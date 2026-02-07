@@ -36,23 +36,25 @@ from total_category_revenue,total_company_revenue
 order by percentage desc;
 
 
--- Q4.CLASSIFY CUSTOMERS INTO TIERS BASED ON THEIR SPENDING HABITS AND SHIPPING EXPERIENCE.
+-- Q4. CUSTOMER SEGMENTATION (RFM)
+-- Grouping customers based on spending and order frequency
 
-select customer_id, sum(payment_value) as total_spend,
-	case 
-    when sum(payment_value) >1000 then 'VIP/High-Value'
-    when sum(payment_value) between 200 and 1000 then 'Mid-Value'
-    else 'budget-shopper'
-    end as spending_value,
-    
-    case
-    when avg(DateDiff(order_delivered_customer_date, order_estimated_delivery_date)) <=0 then 'Satisfied (on time delivery)'
-    when avg(DateDiff(order_delivered_customer_date, order_estimated_delivery_date)) >5 then 'Dissatisfied (late delivery)'
-    else 'Netural'
-    end as satisfaction
-
-from cleaned_retail_data
-group by customer_id;
+SELECT 
+    customer_id,
+    COUNT(order_id) as frequency,
+    SUM(payment_value) as monetary,
+    CASE 
+        -- High Value: High spending AND frequent orders
+        WHEN SUM(payment_value) > 500 AND COUNT(order_id) > 2 THEN 'VIP Customer'
+        -- Loyal: Frequent orders but lower spending
+        WHEN COUNT(order_id) > 2 THEN 'Loyal Customer'
+        -- Big Spender: High spending but infrequent
+        WHEN SUM(payment_value) > 500 THEN 'Big Spender'
+        -- Regular: Everyone else
+        ELSE 'Regular Customer'
+    END as customer_segment
+FROM cleaned_retail_data
+GROUP BY customer_id; customer_id;
 
 
 -- Q5. CALCULATE HOW MUCH REVENUE GREW (OR SHRANK) COMPARED TO THE PREVIOUS MONTH.
