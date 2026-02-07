@@ -7,7 +7,7 @@ This project focuses on building a robust data pipeline to analyze **100,000+ Br
 - **Language:** Python 3.13
 - **Libraries:** Pandas, NumPy, SQLAlchemy, MySQL-Connector
 - **Database:** MySQL (Relational Modeling & CTEs)
-- **Dataset:** [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com)
+- **Dataset:** [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 ## ⚙️ Data Engineering Pipeline (Python)
 Raw data from Olist is highly relational (9 separate files). My Python pipeline performed the following:
