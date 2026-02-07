@@ -1,4 +1,4 @@
-# 📊 End-to-End Brazilian-E-Commerce Analytics Pipeline (Olist Dataset)
+# 📊 Retail_data_pipeline_and_customer_segmentation (Brazilian-E-Commerce Dataset)
 
 ## 📌 Project Overview
 This project focuses on building a robust data pipeline to analyze **100,000+ Brazilian e-commerce transactions**. By integrating **Python** for ETL (Extract, Transform, Load) and **MySQL** for relational modeling, I transformed raw, fragmented CSV files into a structured database ready for business intelligence.
